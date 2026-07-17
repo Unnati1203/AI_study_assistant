@@ -6,13 +6,11 @@ The application focuses on a clean user experience, validated AI responses, and 
 
 ---
 
-Live Demo
+Frontend
+https://ai-study-assistant-five-chi.vercel.app
 
-Frontend:
-(Add your Vercel URL)
-
-Backend:
-(Add your Render URL)
+Backend
+https://luma-study-server.onrender.com
 
 ---
 
