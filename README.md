@@ -1,51 +1,248 @@
-# Luma — AI Study Assistant
+Luma — AI Study Assistant
 
-Luma is a premium React and Express study companion that turns notes into validated, interactive flashcards and multiple-choice quizzes. It intentionally presents structured learning UI rather than a chatbot transcript.
+Luma is an AI-powered study assistant built with React, Vite, Express, and Google Gemini. Instead of behaving like a chatbot, Luma converts study topics into structured learning material, including interactive flashcards and multiple-choice quizzes.
 
-## Features
+The application focuses on a clean user experience, validated AI responses, and reliable error handling while keeping the Gemini API key securely on the server.
 
-- Gemini-powered JSON study-set generation, validated server-side
-- Animated flashcard deck with flip interactions, progress and keyboard controls
-- One-question quiz flow, explanations, score summary, and retry actions
-- Luxury pink glassmorphism UI, dark mode, responsive layout, and Framer Motion transitions
-- Request cancellation, stale-response prevention, network/timeout/API error states, retry, and empty-input safeguards
+---
 
-## Structure
+Live Demo
+
+Frontend:
+(Add your Vercel URL)
+
+Backend:
+(Add your Render URL)
+
+---
+
+Screenshots
+
+Home
+
+<p align="center">
+  <img src="assets/home.png" width="900">
+</p>
+
+Flashcards
+
+<p align="center">
+  <img src="assets/flashcards.png" width="900">
+</p>
+
+Quiz
+
+<p align="center">
+  <img src="assets/quiz.png" width="900">
+</p>
+
+Study Progress
+
+<p align="center">
+  <img src="assets/progress.png" width="900">
+</p>
+
+Light Theme
+
+<p align="center">
+  <img src="assets/whiteTheme.png" width="900">
+</p>
+
+Loading State
+
+<p align="center">
+  <img src="assets/loading.png" width="900">
+</p>
+
+---
+
+Features
+
+- AI-generated flashcards and quizzes using Google Gemini
+- Structured JSON generation with server-side validation
+- Interactive flashcards with flip animations
+- Quiz mode with explanations and score tracking
+- Progress tracking during study sessions
+- Responsive interface for desktop and mobile
+- Light and dark themes
+- Framer Motion animations
+- Robust error handling for API, network, timeout, and invalid responses
+- Request cancellation and stale-response prevention
+
+---
+
+Technology Stack
+
+Frontend
+
+- React
+- Vite
+- Axios
+- Framer Motion
+- CSS
+
+Backend
+
+- Node.js
+- Express.js
+
+AI
+
+- Google Gemini API
+- @google/genai SDK
+
+---
+
+Project Structure
 
 ```
-client/   Vite + React interface
-server/   Express API and Gemini integration
+.
+├── assets
+├── client
+│   ├── src
+│   ├── package.json
+│   └── vite.config.js
+├── server
+│   ├── src
+│   ├── package.json
+│   └── .env.example
+└── README.md
 ```
 
-## Setup
+---
 
-1. Copy `server/.env.example` to `server/.env` and add `GEMINI_API_KEY`.
-2. Optionally copy `client/.env.example` to `client/.env` to set the deployed API URL.
-3. Run `npm install` in both `client` and `server`.
-4. Run `npm run dev` in each folder. The client runs on Vite’s default port and the API on port 5000.
+Setup
 
-## Architecture
+Clone the repository.
 
-The browser only calls Express via Axios. Express owns the Gemini key, requests JSON-only model output, strips accidental markdown fences, validates the response shape, and sends a safe normalized study set to the UI. React hooks own all client state; no external state manager is used.
+```bash
+git clone https://github.com/Unnati1203/AI_study_assistant.git
+```
 
-## Environment variables
+Install dependencies.
 
-Server: `GEMINI_API_KEY` (required), `GEMINI_MODEL` (defaults to `gemini-3.1-flash-lite`), `PORT`, and `CLIENT_ORIGIN`.
+```bash
+cd client
+npm install
 
-Client: `VITE_API_URL` (defaults to `http://localhost:5000/api`). Never expose the Gemini key as a Vite variable.
+cd ../server
+npm install
+```
 
-## AI usage disclosure
+Create the environment file.
 
-Study sets are generated with Google Gemini from the notes submitted to the server. Model output can be inaccurate or incomplete; learners should verify important claims against their course material.
+```
+server/.env
+```
 
-## Deployment
+Example
 
-Deploy `client` to Vercel with `npm run build` and set `VITE_API_URL` to the backend’s `/api` URL. Deploy `server` to Render with `npm start`, configure its environment variables, and set `CLIENT_ORIGIN` to the Vercel URL.
+```env
+PORT=5000
+CLIENT_ORIGIN=http://localhost:5173
+GEMINI_API_KEY=YOUR_API_KEY
+GEMINI_MODEL=gemini-2.0-flash
+```
 
-## Known limitations
+Run the backend.
 
-The API is stateless and does not persist study history. Gemini access and model availability depend on the project API configuration.
+```bash
+cd server
+npm run dev
+```
 
-## Time spent
+Run the frontend.
 
-Approximately 6–8 hours for product design, responsive frontend, API integration, reliability handling, and verification in a typical implementation cycle.
+```bash
+cd client
+npm run dev
+```
+
+---
+
+Architecture
+
+```
+User
+   │
+   ▼
+React Frontend
+   │
+Axios
+   │
+   ▼
+Express Backend
+   │
+Google Gemini API
+   │
+Validated JSON Response
+   │
+   ▼
+Flashcards + Quiz UI
+```
+
+The frontend communicates exclusively with the Express API. The backend securely manages the Gemini API key, requests structured JSON output, validates the response, and returns a normalized study set to the client.
+
+---
+
+Environment Variables
+
+Server
+
+| Variable | Description |
+|----------|-------------|
+| PORT | Backend server port |
+| CLIENT_ORIGIN | Frontend URL |
+| GEMINI_API_KEY | Google Gemini API Key |
+| GEMINI_MODEL | Gemini model name |
+
+Client
+
+| Variable | Description |
+|----------|-------------|
+| VITE_API_URL | Backend API URL |
+
+The Gemini API key should never be exposed to the frontend.
+
+---
+
+Deployment
+
+Frontend
+
+Deploy the client to Vercel.
+
+```bash
+npm run build
+```
+
+Backend
+
+Deploy the Express server to Render and configure the required environment variables.
+
+---
+
+Known Limitations
+
+- The application does not store study history.
+- AI-generated content may occasionally contain inaccuracies.
+- Availability depends on the configured Gemini API project and quota.
+
+---
+
+Future Improvements
+
+- User authentication
+- Study history
+- Export flashcards as PDF
+- Spaced repetition
+- Dashboard with analytics
+- PDF note upload
+- Voice-based learning
+- Topic recommendations
+
+---
+
+Time Spent
+
+Approximately 6–8 hours were spent designing the interface, implementing the frontend and backend, integrating the Gemini API, validating AI responses, and testing the application.
