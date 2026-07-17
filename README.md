@@ -20,9 +20,7 @@ Screenshots
 
 Home
 
-<p align="center">
-  <img src="assets/home.png" width="900">
-</p>
+![Home](assets/home.png)
 
 Flashcards
 
