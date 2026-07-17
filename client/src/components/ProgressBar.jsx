@@ -1,0 +1,1 @@
+export default function ProgressBar({ value, total }) { const percent = total ? (value / total) * 100 : 0; return <div className="progress-wrap"><div className="progress-label"><span>Progress</span><strong>{value} / {total}</strong></div><div className="progress-track"><span style={{ width: `${percent}%` }} /></div></div>; }

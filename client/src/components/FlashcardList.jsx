@@ -1,0 +1,8 @@
+import { useEffect, useState } from 'react';
+import { HiArrowLeft, HiArrowRight } from 'react-icons/hi2';
+import Flashcard from './Flashcard';
+import ProgressBar from './ProgressBar';
+export default function FlashcardList({ cards }) { const [current, setCurrent] = useState(0); const [flipped, setFlipped] = useState(false); const change = (next) => { setCurrent((next + cards.length) % cards.length); setFlipped(false); };
+  useEffect(() => { const key = (event) => { if (event.target.matches('textarea,input,button')) return; if (event.key === 'ArrowLeft') change(current - 1); if (event.key === 'ArrowRight') change(current + 1); if (event.key === ' ' || event.key === 'Enter') { event.preventDefault(); setFlipped((state) => !state); } }; window.addEventListener('keydown', key); return () => window.removeEventListener('keydown', key); }, [current, cards.length]);
+  if (!cards.length) return <div className="empty-state">No flashcards were generated for this material.</div>;
+  return <div className="study-panel"><div className="deck-header"><div><p className="eyebrow">Recall mode</p><h2>Make it stick</h2></div><span className="pill">{cards.length} cards</span></div><Flashcard card={cards[current]} flipped={flipped} onFlip={() => setFlipped(!flipped)} /><div className="deck-controls"><button onClick={() => change(current - 1)} aria-label="Previous flashcard"><HiArrowLeft /></button><ProgressBar value={current + 1} total={cards.length}/><button onClick={() => change(current + 1)} aria-label="Next flashcard"><HiArrowRight /></button></div><p className="keyboard-hint">Use <kbd>←</kbd> <kbd>→</kbd> to navigate · <kbd>Space</kbd> to flip</p></div>; }

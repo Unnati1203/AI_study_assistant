@@ -1,0 +1,7 @@
+import { useRef } from 'react';
+import { HiArrowUp, HiDocumentText, HiSparkles, HiXMark } from 'react-icons/hi2';
+const sample = 'Photosynthesis converts light energy into chemical energy. In chloroplasts, chlorophyll captures sunlight to power reactions that turn water and carbon dioxide into glucose and oxygen. The light-dependent reactions occur in thylakoid membranes; the Calvin cycle uses carbon dioxide in the stroma.';
+export default function InputCard({ notes, setNotes, loading, onGenerate, onCancel }) {
+  const ref = useRef(null); const count = notes.length;
+  return <section className="input-section shell" id="studio"><div className="section-heading"><p className="eyebrow">Your material</p><h2>What are we learning today?</h2></div><div className="input-card"><label htmlFor="notes">Paste notes, a chapter, or a concept</label><textarea ref={ref} id="notes" value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="For example: explain the causes of the French Revolution…" maxLength="18000" disabled={loading}/><div className="input-footer"><span aria-live="polite">{count.toLocaleString()} / 18,000</span><button className="sample-button" onClick={() => { setNotes(sample); ref.current?.focus(); }} disabled={loading}><HiDocumentText /> Try a sample</button><button className="generate-button" onClick={loading ? onCancel : onGenerate} disabled={!loading && notes.trim().length < 20}>{loading ? <><HiXMark /> Cancel</> : <><HiSparkles /> Generate <HiArrowUp /></>}</button></div></div></section>;
+}

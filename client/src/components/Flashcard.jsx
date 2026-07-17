@@ -1,0 +1,2 @@
+import { motion } from 'framer-motion';
+export default function Flashcard({ card, flipped, onFlip }) { return <motion.button className={`flashcard ${flipped ? 'flipped' : ''}`} onClick={onFlip} aria-pressed={flipped} aria-label="Flip flashcard" whileTap={{ scale: .99 }}><span className="card-side card-front"><small>QUESTION</small><strong>{card.question}</strong><i>Tap to reveal answer</i></span><span className="card-side card-back"><small>ANSWER</small><strong>{card.answer}</strong><i>Tap to see question</i></span></motion.button>; }
