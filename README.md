@@ -18,39 +18,17 @@ Backend:
 
 Screenshots
 
-Home
-
 ![Home](assets/home.png)
 
-Flashcards
+![Flashcards](assets/flashcards.png)
 
-<p align="center">
-  <img src="assets/flashcards.png" width="900">
-</p>
+![Quiz](assets/quiz.png)
 
-Quiz
+![Study Progress](assets/progress.png)
 
-<p align="center">
-  <img src="assets/quiz.png" width="900">
-</p>
+![Light Theme](assets/whiteTheme.png)
 
-Study Progress
-
-<p align="center">
-  <img src="assets/progress.png" width="900">
-</p>
-
-Light Theme
-
-<p align="center">
-  <img src="assets/whiteTheme.png" width="900">
-</p>
-
-Loading State
-
-<p align="center">
-  <img src="assets/loading.png" width="900">
-</p>
+![Loading State](assets/loading.png)
 
 ---
 
